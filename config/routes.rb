@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   #get 'top' => 'homes#top'
   root to: 'homes#top'
   #ポストイメージコントローラーに使うアクションのみルーティング
-  resources :post_images, only: [:new, :create, :index, :show, :destroy]
+  resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resources :favorites, onry: [:create, :des]
+    
+    resources :post_comments, only: [:create, :destroy]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
